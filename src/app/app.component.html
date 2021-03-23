@@ -1,12 +1,35 @@
-<h1>First App</h1>
+<!-- <h1>First App</h1> -->
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolores deleniti quae necessitatibus consectetur
+<!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolores deleniti quae necessitatibus consectetur
   reiciendis illum amet optio vel, a quas earum perferendis cupiditate ratione eligendi assumenda et impedit iusto!</p>
 <input type="button" value="Set Age 0" (click)="setAgeZero()" /> <br><br>
 <input type="button" value="Increment" (click)="increment()">
 <h1>Age is : {{age}}</h1>
-<input type="button" value="Decrement" (click)="decrement()">
+<input type="button" value="Decrement" (click)="decrement()"> -->
 
+<div>
+  <h1>User List</h1>
+  <div class="userCard" *ngFor="let userJSON of userList;let i=index">
+    <div class="userDetails">
+      <p>user ID : {{i+1}}</p>
+      <p>User Name : {{userJSON.name}}</p>
+      <p>User Email : {{userJSON.email}}</p>
+      <p>User Age : {{userJSON.age || "N/A"}}</p>
+      <p>User Mobile : {{userJSON.mobile || "N/A"}}</p>
+      <div class="educationList">
+        <h2>Education</h2>
+        <div class="education" *ngFor="let education of userJSON.education">
+          <p>Standard :{{education.standard}}</p>
+          <p>School :{{education.school}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="httpStatus==true && userList.length==0" class="loader">
+    <h1>Getting User List....</h1>
+  </div>
+  <div *ngIf="httpStatus==false && userList.length==0" class="loader">
+    <h3>No User List Found</h3>
+  </div>
 
-<h1>User Details</h1>
-<h3> User Name : {{userJSON.name}}</h3>
+</div>
